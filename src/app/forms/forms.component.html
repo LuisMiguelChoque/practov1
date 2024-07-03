@@ -1,0 +1,39 @@
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate >
+<div class="container border mt-5" style="width: 600px;">
+    <div class="row">
+        <div class="col-12 text-center mt-3">
+            <label class="text-danger">Recuperar</label>
+        </div>
+        <div class="col-6 text-center">
+            <label>Usuario:</label>
+        </div>
+        <div class="col-sm-6 mt-2">
+            <input type="text" class="form-control" [(ngModel)]="model.usuario" name="usuario" #usuario="ngModel" [ngClass]="{'is-invalid':f.submitted && usuario.invalid}" required style="width: 200px;">
+            <div *ngIf="f.submitted && usuario.invalid" class="invalid-feedback">
+                    <div *ngIf="usuario.errors?.['required']">El usuario es requerido</div>
+            </div>
+        </div>
+        <div class="col-6 text-center">
+            <label for="">Clave:</label>
+        </div>
+        <div class="col-6 mt-2">
+            <input type="password" class="form-control" [(ngModel)]="model.clave" name="clave" #clave="ngModel" [ngClass]="{'is-invalid':f.submitted && clave.invalid}" required style="width: 200px;">
+            <div *ngIf="f.submitted && clave.invalid" class="invalid-feedback">
+                <div *ngIf="clave.errors?.['required']">La clave es requerido</div>
+        </div> 
+        </div>
+        <div class="col-6 text-center">
+            <label>Repetir clave::</label>
+        </div>
+        <div class="col-6 mt-2">
+            <input type="password" class="form-control" [(ngModel)]="model.rclave" name="clave" #rclave="ngModel" [ngClass]="{'is-invalid':f.submitted && rclave.invalid}" required style="width: 200px;">
+            <div *ngIf="f.submitted && rclave.invalid" class="invalid-feedback">
+                <div *ngIf="rclave.errors?.['required']">Debe repetir claves</div>
+        </div> 
+        </div>
+        <div class="col-12 text-center mt-4 mb-4">
+            <button  class="btn btn-outline-primary">Guardar</button>
+        </div>
+    </div>
+</div>
+</form>

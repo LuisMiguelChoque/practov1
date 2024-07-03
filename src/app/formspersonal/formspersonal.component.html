@@ -1,0 +1,172 @@
+<form [formGroup]="regForm" (ngSubmit)="enviarDatos()">
+    <div class="container border mt-5" style="width: 600px">
+        <div class="row">
+            <div class="col-12 text-center mt-3">
+                <label class="text-danger">Adicionar Nuevo Personal</label>
+            </div>
+            <div class="col-6 text-center">
+                <label>Cedula:</label>
+            </div>
+            <div class="col-sm-6 mt-2">
+                <input type="text" formControlName="cedula" [ngClass]="{ 'is-invalid': xenviado && f['cedula'].errors }"
+                    class="form-control" style="width: 200px" placeholder="Ingrese su cedula" />
+                <div *ngIf="xenviado && f['cedula'].errors" class="invalid-feedback">
+                    <div *ngIf="f['cedula'].errors?.['required']">
+                        La cedula es requerida
+                    </div>
+                    <div *ngIf="f['cedula'].errors?.['minlength']">
+                        Cedula no debe ser menor que 6 caracteres
+                    </div>
+                    <div *ngIf="f['cedula'].errors?.['maxlength']">
+                        La cedula no debe ser mayor 8 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Nombres:</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="text" formControlName="nombres"
+                    [ngClass]="{ 'is-invalid': xenviado && f['nombres'].errors }" class="form-control"
+                    style="width: 200px" placeholder="Ingrese su nombre" />
+                <div *ngIf="xenviado && f['nombres'].errors" class="invalid-feedback">
+                    <div *ngIf="f['nombres'].errors?.['required']">
+                        El nombre es requerido
+                    </div>
+                    <div *ngIf="f['nombres'].errors?.['minlength']">
+                        Nombre no puede ser menor a 3 caracteres
+                    </div>
+                    <div *ngIf="f['nombres'].errors?.['maxlength']">
+                        Nombre no puede ser mayor a 30 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Ap.Paterno:</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="text" formControlName="appaterno"
+                    [ngClass]="{ 'is-invalid': xenviado && f['appaterno'].errors }" class="form-control"
+                    style="width: 200px" placeholder="Ingresar apellido paterno" />
+                <div *ngIf="xenviado && f['appaterno'].errors" class="invalid-feedback">
+                    <div *ngIf="f['appaterno'].errors?.['minlength']">
+                        Apellido no puede ser menor a 3 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Ap.Materno:</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="text" formControlName="apmaterno"
+                    [ngClass]="{ 'is-invalid': xenviado && f['apmaterno'].errors }" class="form-control"
+                    style="width: 200px" placeholder="Ingrese apellido materno" />
+                <div *ngIf="xenviado && f['apmaterno'].errors" class="invalid-feedback">
+                    <div *ngIf="f['apmaterno'].errors?.['required']">
+                        El campo es requerido
+                    </div>
+                    <div *ngIf="f['apmaterno'].errors?.['minlength']">
+                        Apellido no puede ser menor a 3 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Estado Civil::</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="radio" formControlName="estadocivil"
+                    [ngClass]="{ 'is-invalid': xenviado && f['estadocivil'].invalid }" name="estadocivil" value="casado"
+                    class="form-check-input" />
+                Casado
+                <input type="radio" formControlName="estadocivil"
+                    [ngClass]="{ 'is-invalid': xenviado && f['estadocivil'].invalid }" name="estadocivil"
+                    value="soltero" class="form-check-input" />
+                Soltero (a)
+                <input type="radio" formControlName="estadocivil"
+                    [ngClass]="{ 'is-invalid': xenviado && f['estadocivil'].invalid }" name="estadocivil"
+                    value="divorciado" class="form-check-input" />
+                Divorciado
+                <div *ngIf="xenviado && f['estadocivil'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['estadocivil'].errors?.['required']">
+                        Debe seleccionar una opción
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Lug. Nacimiento::</label>
+            </div>
+            <div class="col-6 mt-2">
+                <select formControlName="lugnacimiento"[ngClass]="{'is-invalid':xenviado && f['lugnacimiento'].errors}"  name="" id="">
+                    <option>Seleccionar departamento</option>
+                    <option value="1">Beni</option>
+                    <option value="2">Chuquisaca</option>
+                    <option value="3">Cochabamba</option>
+                    <option value="4">La Paz</option>
+                    <option value="5">Oruro</option>
+                    <option value="6">Pando</option>
+                    <option value="7">Potosi</option>
+                    <option value="8">Santa Cruz</option>
+                    <option value="9">Tarija</option>
+                </select>
+                <div *ngIf="xenviado && f['lugnacimiento'].errors" class="invalid-feedback">
+                    <div *ngIf="f['lugnacimiento'].errors?.['required']">Seleccione un departamento</div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Usuario::</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="text" formControlName="usuario"
+                    [ngClass]="{ 'is-invalid': xenviado && f['usuario'].errors }" class="form-control"
+                    style="width: 200px" placeholder="nombre Usuario" />
+                <div *ngIf="xenviado && f['usuario'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['usuario'].errors?.['required']">
+                        El usuario es requerido
+                    </div>
+                    <div *ngIf="f['usuario'].errors?.['minlength']">
+                        El usuario debe tener almenos 6 caracteres
+                    </div>
+                    <div *ngIf="f['usuario'].errors?.['maxlength']">
+                        El usuario no debe superar los 10 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Clave Nueva:</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="password" formControlName="clave"
+                [ngClass]="{ 'is-invalid':xenviado && f['clave'].errors }" class="form-control" style="width: 200px" placeholder="Password nuevo" />
+                <div *ngIf="xenviado && f['clave'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['clave'].errors?.['required']">
+                        La clave es requerida
+                    </div>
+                    <div *ngIf="f['clave'].errors?.['minlength']">
+                        La clave debe tener almenos 6 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <label>Repetir Clave:</label>
+            </div>
+            <div class="col-6 mt-2">
+                <input type="password" formControlName="rclave"
+                [ngClass]="{ 'is-invalid':xenviado && f['rclave'].errors }" class="form-control" style="width: 200px" placeholder="Repetir Password" />
+                <div *ngIf="xenviado && f['rclave'].invalid" class="invalid-feedback">
+                    <div *ngIf="f['rclave'].errors?.['required']">
+                        El campo es requerido
+                    </div>
+                    <div *ngIf="f['rclave'].errors?.['minlength']">
+                        La clave debe tener almenos 6 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center mt-4 mb-4">
+                <button type="reset" class="btn btn-outline-primary">Cancelar</button>
+            </div>
+            <div class="col-6 text-center mt-4 mb-4">
+                <button class="btn btn-outline-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</form>
